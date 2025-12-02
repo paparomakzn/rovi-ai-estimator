@@ -1,0 +1,12 @@
+2025-12-02 11:56:25,808 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8213818961:AAHmvsTLva7shePtE5-NtKzob7vofaGp8Pc/getMe "HTTP/1.1 200 OK"
+2025-12-02 11:56:25,811 - __main__ - ERROR - Критическая ошибка
+Traceback (most recent call last):
+  File "C:\Users\rokdo\projects\rovi-ai-estimator\roviko_bot_fixed.py", line 181, in run
+    application.run_polling(
+  File "C:\Users\rokdo\AppData\Local\Programs\Python\Python310\lib\site-packages\telegram\ext\_application.py", line 727, in run_polling
+    return self.__run(
+  File "C:\Users\rokdo\AppData\Local\Programs\Python\Python310\lib\site-packages\telegram\ext\_application.py", line 892, in __run
+    loop = asyncio.get_event_loop()
+  File "C:\Users\rokdo\AppData\Local\Programs\Python\Python310\lib\asyncio\events.py", line 656, in get_event_loop
+    raise RuntimeError('There is no current event loop in thread %r.'
+RuntimeError: There is no current event loop in thread 'MainThread'.

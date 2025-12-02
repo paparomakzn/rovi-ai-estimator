@@ -1,0 +1,23 @@
+# requirements.txt - Правильные версии для Windows
+python-telegram-bot==20.3
+anyio==3.7.1
+httpx==0.24.1
+httpcore==0.17.3
+
+# Обработка изображений
+opencv-python==4.8.1.78
+pytesseract==0.3.10
+pillow==10.1.0
+
+# Обработка документов
+PyMuPDF==1.23.8
+ezdxf==1.1.1
+
+# Отчеты
+reportlab==4.0.4
+openpyxl==3.1.2
+
+# Утилиты
+python-dotenv==1.0.0
+numpy==1.24.3
+requests==2.31.0
