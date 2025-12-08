@@ -62,6 +62,38 @@ PNG, JPG, PDF, DXF
         
         await update.message.reply_text(help_text)
     
+async def handle_document(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Обработка загруженных документов (PDF, и т.д.)"""
+    user = update.effective_user
+    document = update.message.document
+    caption = update.message.caption or "Без описания"
+
+    await update.message.reply_text(
+        f"📄 Получен документ: {document.file_name}\
+"
+        f"📝 Задание: {caption}\
+"
+        f"⏳ Обрабатываю..."
+    )
+    # Здесь будет логика обработки файла (скачивание, анализ)
+    # Пока просто заглушка
+    await update.message.reply_text("✅ Файл принят в работу. Расчёт будет позже.")
+
+async def handle_photo(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Обработка загруженных фото"""
+    user = update.effective_user
+    photo = update.message.photo[-1]  # Берём самую качественную версию
+    caption = update.message.caption or "Без описания"
+
+    await update.message.reply_text(
+        f"🖼️ Получено изображение\n"
+        f"📝 Задание: {caption}\
+"
+        f"⏳ Анализирую..."
+    )
+    # Заглушка
+    await update.message.reply_text("✅ Изображение принято. Расчёт будет позже.")
+
     async def echo(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         """Простой ответ на текстовые сообщения"""
         user_message = update.message.text
@@ -103,6 +135,11 @@ PNG, JPG, PDF, DXF
             application.add_handler(CommandHandler("start", self.start))
             application.add_handler(CommandHandler("help", self.help_command))
             application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, self.echo))
+            # Обработчик для документов (PDF, файлы)
+            application.add_handler(MessageHandler(filters.Document.ALL, self.handle_document))
+            # Обработчик для фото
+            application.add_handler(MessageHandler(filters.PHOTO, self.handle_photo))
+
             
             # Обработчик ошибок
             application.add_error_handler(self.error_handler)
@@ -120,5 +157,3 @@ PNG, JPG, PDF, DXF
             pass
 
 if __name__ == "__main__":
-    bot = RovikoBot()
-    bot.run()
