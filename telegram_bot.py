@@ -157,3 +157,5 @@ async def handle_photo(self, update: Update, context: ContextTypes.DEFAULT_TYPE)
             pass
 
 if __name__ == "__main__":
+    bot = RovikoBot()
+    bot.run()
