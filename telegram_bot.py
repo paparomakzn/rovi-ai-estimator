@@ -117,7 +117,7 @@ PNG, JPG, PDF, DXF
             
         except Exception as e:
             print(f"❌ КРИТИЧЕСКАЯ ОШИБКА: {e}")
-            input("Нажмите Enter для выхода...")
+            pass
 
 if __name__ == "__main__":
     bot = RovikoBot()
