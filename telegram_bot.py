@@ -62,45 +62,49 @@ PNG, JPG, PDF, DXF
         
         await update.message.reply_text(help_text)
     async def handle_document(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Обработка загруженных документов (PDF, и т.д.)"""
-    user = update.effective_user
-    document = update.message.document
-    caption = update.message.caption or "Без описания"
+        """Обработка загруженных документов (PDF, и т.д.)"""
+        user = update.effective_user
+        document = update.message.document
+        caption = update.message.caption or "Без описания"
 
-    await update.message.reply_text(
-        f"📄 Получен документ: {document.file_name}\
-"
-        f"📝 Задание: {caption}\
-"
-        f"⏳ Обрабатываю..."
-    )
-    # Здесь будет логика обработки файла (скачивание, анализ)
-    # Пока просто заглушка
-    await update.message.reply_text("✅ Файл принят в работу. Расчёт будет позже.")
+        await update.message.reply_text(
+            f"📄 Получен документ: {document.file_name}\
+            "
+            f"📝 Задание: {caption}\
+            "
+            f"⏳ Обрабатываю..."
+        )
+
+        # Здесь будет логика обработки файла (скачивание, анализ)
+        # Пока просто заглушка
+        await update.message.reply_text("✅ Файл принят в работу. Расчёт будет позже.")
+
     async def handle_photo(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Обработка загруженных фото"""
-    user = update.effective_user
-    photo = update.message.photo[-1]  # Берём самую качественную версию
-    caption = update.message.caption or "Без описания"
+        """Обработка загруженных фото"""
+        user = update.effective_user
+        photo = update.message.photo[-1]  # Берём самую качественную версию
+        caption = update.message.caption or "Без описания"
 
-    await update.message.reply_text(
-        f"🖼️ Получено изображение\n"
-        f"📝 Задание: {caption}\
-"
-        f"⏳ Анализирую..."
-    )
-    # Заглушка
-    await update.message.reply_text("✅ Изображение принято. Расчёт будет позже.")
+        await update.message.reply_text(
+            f"🖼️ Получено изображение\n"
+            f"📝 Задание: {caption}\
+            "
+            f"⏳ Анализирую..."
+        )
+
+        # Заглушка
+        await update.message.reply_text("✅ Изображение принято. Расчёт будет позже.")
+
     async def echo(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         """Простой ответ на текстовые сообщения"""
         user_message = update.message.text
         self.logger.info(f"Сообщение от {update.effective_user.id}: {user_message}")
-        
+
         response = f"📝 Получил ваше сообщение: \"{user_message}\"\n\n"
         response += "Для расчета сметы загрузите чертеж с описанием работы."
-        
+
         await update.message.reply_text(response)
-    
+
     async def error_handler(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         """Обработчик ошибок"""
         self.logger.error(f"Ошибка: {context.error}")
@@ -108,7 +112,7 @@ PNG, JPG, PDF, DXF
             await update.effective_message.reply_text(
                 "❌ Произошла ошибка. Пожалуйста, попробуйте позже."
             )
-    
+
     def run(self):
         """Запуск бота"""
         from config import Config
