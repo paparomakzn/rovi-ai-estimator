@@ -114,6 +114,7 @@ async def handle_photo(self, update: Update, context: ContextTypes.DEFAULT_TYPE)
     
     def run(self):
         """Запуск бота"""
+        from config import Config
         # Проверка токена
         if self.token == 'ВАШ_ТОКЕН_БОТА' or 'ВАШ_ТОКЕН_БОТА' in self.token:
             print("❌ ОШИБКА: Токен Telegram не настроен!")
