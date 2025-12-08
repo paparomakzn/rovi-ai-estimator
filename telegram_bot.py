@@ -61,8 +61,7 @@ PNG, JPG, PDF, DXF
 📏 **Макс. размер:** {Config.MAX_FILE_SIZE/(1024*1024):.0f}MB""".format(Config=Config)
         
         await update.message.reply_text(help_text)
-    
-async def handle_document(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+    async def handle_document(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Обработка загруженных документов (PDF, и т.д.)"""
     user = update.effective_user
     document = update.message.document
@@ -78,8 +77,7 @@ async def handle_document(self, update: Update, context: ContextTypes.DEFAULT_TY
     # Здесь будет логика обработки файла (скачивание, анализ)
     # Пока просто заглушка
     await update.message.reply_text("✅ Файл принят в работу. Расчёт будет позже.")
-
-async def handle_photo(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+    async def handle_photo(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Обработка загруженных фото"""
     user = update.effective_user
     photo = update.message.photo[-1]  # Берём самую качественную версию
@@ -93,7 +91,6 @@ async def handle_photo(self, update: Update, context: ContextTypes.DEFAULT_TYPE)
     )
     # Заглушка
     await update.message.reply_text("✅ Изображение принято. Расчёт будет позже.")
-
     async def echo(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         """Простой ответ на текстовые сообщения"""
         user_message = update.message.text
